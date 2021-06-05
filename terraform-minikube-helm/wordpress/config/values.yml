@@ -1,0 +1,8 @@
+wordpressUsername: vagrant
+wordpressPassword: vagrant
+wordpressEmail: vagrant@galaxy3.com
+wordpressFirstName: Cyber Security
+wordpressLastName: Pro
+wordpressBlogName: galaxy3.net
+#service:
+#  type: LoadBalancer
