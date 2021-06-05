@@ -7,6 +7,28 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 [Install Terraform](https://www.terraform.io/docs/cli/install/apt.html)
 
+Install Minikube
+```
+On Windows
+
+choco install minikube
+
+On MacOS
+
+brew install minikube
+```
+
+Install Helm
+```
+On Windows
+
+choco install kubernetes-helm
+
+On MacOS
+
+brew install kubernetes-helm
+```
+
 ```
 az login
 az account list
