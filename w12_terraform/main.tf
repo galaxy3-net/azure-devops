@@ -185,20 +185,20 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
     }
   }
 
-    provisioner "remote-exec" {
-      inline = [
-        "sudo systemctl enable docker",
-        "sudo systemctl start docker",
-        var.ansible-start,
-      ]
+#    provisioner "remote-exec" {
+#      inline = [
+#        "sudo systemctl enable docker",
+#        "sudo systemctl start docker",
+#        var.ansible-start,
+#      ]
 
-      connection {
-        type = "ssh"
-        user = "azureuser"
-        private_key = file("~/.ssh/${var.id-rsa-keyname}")
-        host = self.public_ip_address
-      }
-  }
+#      connection {
+#        type = "ssh"
+#        user = "azureuser"
+#        private_key = file("~/.ssh/${var.id-rsa-keyname}")
+#        host = self.public_ip_address
+#      }
+#  }
 
   provisioner "file" {
     source  = "${path.module}/ansible"
