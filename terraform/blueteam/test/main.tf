@@ -63,3 +63,10 @@ resource "azurerm_resource_group" "blueteam" {
   }
 }
 
+output "blueteam-rg-name" {
+  value = azurerm_resource_group.blueteam.name
+}
+
+output "blueteam-rg-locaion" {
+  value = azurerm_resource_group.blueteam.location
+}
