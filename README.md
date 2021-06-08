@@ -1,6 +1,10 @@
 # azure-devops
 Azure DevOps
 
+[Add a Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+
+
+
 Install Azure CLI
 ```
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
