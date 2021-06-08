@@ -18,3 +18,9 @@
 *.tfstate.backup
 *.out
 .terraform/
+*.terraform
+*.pem
+*.tfvars
+*.tfplan
+*.lock.info
+.DS_STORE

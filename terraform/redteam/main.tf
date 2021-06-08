@@ -102,7 +102,7 @@ resource "azurerm_network_security_group" "blueteam" {
 
 
 resource "azurerm_virtual_network" "net0" {
-  address_space = [var.network-1-cidr]
+  address_space = [var.network_cidrs[RedTeam-Net]]
   location = azurerm_resource_group.blueteam.location
   name = "${var.team-name-mix}-Net"
   resource_group_name = azurerm_resource_group.blueteam.name
@@ -297,4 +297,16 @@ resource "azurerm_network_interface_backend_address_pool_association" "example" 
   network_interface_id    = azurerm_network_interface.web[count.index].id
   ip_configuration_name   = "${var.id-rsa-keyname}web-nic1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.blueteam.id
+}
+
+output "blueteam-rg-name" {
+  value = azurerm_resource_group.blueteam.name
+}
+
+output "blueteam-rg-location" {
+  value = azurerm_resource_group.blueteam.location
+}
+
+output "network-cidrs" {
+  value = var.network_cidrs
 }
