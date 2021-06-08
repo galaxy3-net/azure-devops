@@ -67,6 +67,6 @@ output "blueteam-rg-name" {
   value = azurerm_resource_group.blueteam.name
 }
 
-output "blueteam-rg-locaion" {
+output "blueteam-rg-location" {
   value = azurerm_resource_group.blueteam.location
 }
