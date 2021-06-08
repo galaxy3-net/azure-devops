@@ -58,7 +58,7 @@ data "terraform_remote_state" "blueteam" {
 
 resource "azurerm_network_security_group" "blueteam" {
   name                = "${var.team-name-mix}-SG"
-  location            = "${data.terraform_remote_state.blueteam.blueteam-rg-location}"
+  location            = data.terraform_remote_state.blueteam.outputs.blueteam-rg-location
   resource_group_name = data.terraform_remote_state.blueteam.outputs.blueteam-rg-name
 
   security_rule {
