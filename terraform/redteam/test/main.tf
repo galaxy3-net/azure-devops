@@ -50,7 +50,7 @@ provider "azurerm" {
 data "terraform_remote_state" "blueteam" {
   backend = "local"
 
-  config {
+  config = {
     path = "/Downloads/blueteam/terraform.tfstate"
   }
 }
