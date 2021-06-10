@@ -44,7 +44,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   }
 
   admin_ssh_key {
-    public_key = file("~/.ssh/${var.id-rsa-keyname}.pub")
+    public_key = file("~/.ssh/${var.id-rsa-keyname}_ansible.pub")
     username = "sysadmin"
   }
   tags = var.resource_tags
