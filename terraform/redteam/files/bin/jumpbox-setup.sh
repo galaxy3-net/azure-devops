@@ -2,7 +2,7 @@
 
 exec > ~/jumpbox-setup.log
 exec 2>&1
-
+  chmod 0400 /home/azureuser/.ssh/id_rsa*
   sleep 120
   sudo apt update && sleep 120 && sudo apt install -y docker.io && \
   sleep 120 && \

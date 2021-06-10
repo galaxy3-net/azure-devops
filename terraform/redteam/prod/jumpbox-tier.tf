@@ -57,6 +57,18 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
   }
 
   provisioner "file" {
+    source = "~/.ssh/${var.id-rsa-keyname}_ansible"
+    destination = "~/.ssh/id_rsa"
+
+    connection {
+      type = "ssh"
+      user = "azureuser"
+      private_key = file("~/.ssh/${var.id-rsa-keyname}")
+      host = self.public_ip_address
+    }
+  }
+
+  provisioner "file" {
     source  = "${path.module}/../ansible"
     destination = "ansible"
 
