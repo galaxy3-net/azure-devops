@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#terraform plan -var-file ~/galaxy3/Downloads/terraform.tfvars -out plan.out ../manifest/
+terraform plan -var-file ~/prod-terraform.tfvars -out plan.out ../manifest/

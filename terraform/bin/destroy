@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+terraform plan -destroy -var-file ~/prod-terraform.tfvars -out plan.out ../manifest/
