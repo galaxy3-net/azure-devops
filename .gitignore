@@ -20,7 +20,6 @@
 .terraform/
 *.terraform
 *.pem
-*.tfvars
 *.tfplan
 *.lock.info
 .DS_STORE
