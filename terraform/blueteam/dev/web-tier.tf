@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "web" {
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
   internal_dns_name_label = "elk-web-${count.index}"
   ip_configuration {
-    name = "${var.id-rsa-keyname}web-nic1"
+    name = "elk-web-nic1"
     subnet_id = azurerm_subnet.default.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id = azurerm_public_ip.blueteam.id
