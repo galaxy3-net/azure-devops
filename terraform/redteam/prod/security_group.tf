@@ -46,7 +46,7 @@ resource "azurerm_network_security_group" "blueteam" {
     priority = 502
     protocol = "TCP"
     source_port_range = "*"
-    source_address_prefix = "*"
+    source_address_prefix = var.home_ip
     destination_port_range = "80"
     destination_address_prefix = "VirtualNetwork"
   }

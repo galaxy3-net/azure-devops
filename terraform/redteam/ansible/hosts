@@ -18,8 +18,8 @@
 # Ex 2: A collection of hosts belonging to the 'webservers' group
 
 [webservers]
-10.0.0.5 ansible_python_interpreter=/usr/bin/python3
-10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+web-1 ansible_python_interpreter=/usr/bin/python3
+web-2 ansible_python_interpreter=/usr/bin/python3
 
 #alpha.example.org
 #beta.example.org
