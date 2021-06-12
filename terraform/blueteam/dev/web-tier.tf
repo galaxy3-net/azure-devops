@@ -17,7 +17,7 @@ resource "azurerm_network_interface" "web" {
     name = "elk-web-nic1"
     subnet_id = azurerm_subnet.default.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.blueteam.id
+    public_ip_address_id = azurerm_public_ip.elk.id
   }
   tags = var.resource_tags
 }
@@ -51,11 +51,11 @@ resource "azurerm_linux_virtual_machine" "web" {
   tags = var.resource_tags
 }
 
-resource "azurerm_public_ip" "blueteam" {
+resource "azurerm_public_ip" "elk" {
   name                = "ELK-pip"
   location            = azurerm_network_security_group.blueteam.location
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-  allocation_method   = "Static"
+  allocation_method   = "Dynamic"
   tags = var.resource_tags
 }
 
