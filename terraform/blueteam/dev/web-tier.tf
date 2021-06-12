@@ -10,9 +10,9 @@ resource "azurerm_network_interface" "web" {
   count = 2
 
   location = azurerm_network_security_group.blueteam.location
-  name = "web-${count.index}"
+  name = "elk-web-${count.index}"
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-  internal_dns_name_label = "web-${count.index}"
+  internal_dns_name_label = "elk-web-${count.index}"
   ip_configuration {
     name = "${var.id-rsa-keyname}web-nic1"
     subnet_id = azurerm_subnet.default.id
