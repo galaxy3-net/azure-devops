@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-exec > ~/jumpbox-setup.log
+exec | tee ~/jumpbox-setup.log
 exec 2>&1
   # chmod 0400 /home/azureuser/.ssh/id_rsa*
   sleep 120
