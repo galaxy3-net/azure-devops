@@ -27,7 +27,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   admin_username = "sysadmin"
   location = azurerm_resource_group.rg1.location
   name = "Web-${count.index + 1}"
-  network_interface_ids = [azurerm_network_interface.web[count.index + 1].id]
+  network_interface_ids = [azurerm_network_interface.web[count.index].id]
   resource_group_name = azurerm_resource_group.rg1.name
   availability_set_id = azurerm_availability_set.blueteam.id
   size = "Standard_B1s"
@@ -79,7 +79,7 @@ resource "azurerm_lb_backend_address_pool" "blueteam" {
 resource "azurerm_network_interface_backend_address_pool_association" "example" {
   count = 2
 
-  network_interface_id    = azurerm_network_interface.web[count.index + 1].id
+  network_interface_id    = azurerm_network_interface.web[count.index].id
   ip_configuration_name   = "${var.id-rsa-keyname}web-nic1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.blueteam.id
 }
