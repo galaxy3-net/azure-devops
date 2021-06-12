@@ -52,7 +52,7 @@ resource "azurerm_linux_virtual_machine" "web" {
 }
 
 resource "azurerm_public_ip" "blueteam" {
-  name                = "${var.team-name-mix}-pip"
+  name                = "ELK-pip"
   location            = azurerm_network_security_group.blueteam.location
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
   allocation_method   = "Static"
