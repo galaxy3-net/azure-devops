@@ -39,5 +39,17 @@ resource "azurerm_network_security_group" "blueteam" {
     destination_address_prefix = "VirtualNetwork"
   }
 
+  security_rule {
+    access = "Allow"
+    direction = "Inbound"
+    name = "Allow-Web"
+    priority = 502
+    protocol = "TCP"
+    source_port_range = "*"
+    source_address_prefix = "*"
+    destination_port_range = "80"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
   tags = var.resource_tags
 }
