@@ -70,6 +70,13 @@ resource "azurerm_lb" "blueteam" {
   tags = var.resource_tags
 }
 
+resource "azurerm_lb_probe" "example" {
+  resource_group_name = azurerm_resource_group.rg1.name
+  loadbalancer_id     = azurerm_lb.blueteam.id
+  name                = "ssh-running-probe"
+  port                = 80
+}
+
 resource "azurerm_lb_backend_address_pool" "blueteam" {
   #resource_group_name = azurerm_resource_group.blueteam.name
   loadbalancer_id     = azurerm_lb.blueteam.id
@@ -83,3 +90,16 @@ resource "azurerm_network_interface_backend_address_pool_association" "example" 
   ip_configuration_name   = "${var.id-rsa-keyname}web-nic1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.blueteam.id
 }
+
+resource "azurerm_lb_rule" "example" {
+  resource_group_name            = azurerm_resource_group.rg1.name
+  loadbalancer_id                = azurerm_lb.blueteam.id
+  name                           = "LBRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 80
+  backend_port                   = 80
+  frontend_ip_configuration_name = "PublicIPAddress"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.blueteam.id
+  probe_id = azurerm_lb_probe.example.id
+}
+
