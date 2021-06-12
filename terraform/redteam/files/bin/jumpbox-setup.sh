@@ -9,5 +9,5 @@ exec 2>&1
   sudo systemctl enable docker && sudo systemctl start docker
   sleep 120
   sudo docker pull cyberxsecurity/ansible && \
-  sudo docker run --detach --hostname ansible --name ansible --mount type=bind,src=/home/azureuser/.ssh,dst=/root/.ssh --mount type=bind,src=/home/azureuser/ansible,dst=/etc/ansible cyberxsecurity/ansible
+  sudo docker run --name ansible --mount type=bind,src=/home/vagrant/.ssh,dst=/root/.ssh --mount type=bind,src=/home/vagrant/ansible,dst=/etc/ansible  -d -t cyberxsecurity/ansible sleep infinity
 
