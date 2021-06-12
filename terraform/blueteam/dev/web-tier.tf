@@ -1,8 +1,16 @@
-resource "azurerm_availability_set" "blueteam" {
-  name                = "${var.team-name-mix}-AS"
+#resource "azurerm_availability_set" "blueteam" {
+#  name                = "${var.team-name-mix}-AS"
+#  location            = azurerm_network_security_group.blueteam.location
+#  resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
+#
+#  tags = var.resource_tags
+#}
+
+resource "azurerm_public_ip" "elk" {
+  name                = "ELK-pip"
   location            = azurerm_network_security_group.blueteam.location
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-
+  allocation_method   = "Dynamic"
   tags = var.resource_tags
 }
 
@@ -30,7 +38,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   name = "Elk-Web-${count.index}"
   network_interface_ids = [azurerm_network_interface.web[count.index].id]
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-  availability_set_id = azurerm_availability_set.blueteam.id
+  # availability_set_id = azurerm_availability_set.blueteam.id
   size = "Standard_B1s"
   os_disk {
     caching = "ReadWrite"
@@ -51,13 +59,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   tags = var.resource_tags
 }
 
-resource "azurerm_public_ip" "elk" {
-  name                = "ELK-pip"
-  location            = azurerm_network_security_group.blueteam.location
-  resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-  allocation_method   = "Dynamic"
-  tags = var.resource_tags
-}
+
 
 #resource "azurerm_lb" "blueteam" {
 #  name                = "${var.team-name-mix}-lb"
