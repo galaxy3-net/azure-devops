@@ -39,6 +39,18 @@ resource "azurerm_network_security_group" "blueteam" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    access = "Allow"
+    direction = "Inbound"
+    name = "Allow-5601-for-ELK"
+    priority = 502
+    protocol = "TCP"
+    source_port_range = "*"
+    source_address_prefix = var.home_ip
+    destination_port_range = "5601"
+    destination_address_prefix = "*"
+  }
+
   tags = var.resource_tags
 }
 
