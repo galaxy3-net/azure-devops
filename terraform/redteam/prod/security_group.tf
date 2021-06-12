@@ -24,7 +24,7 @@ resource "azurerm_network_security_group" "blueteam" {
     source_port_range = "*"
     source_address_prefix = var.home_ip
     destination_port_range = "22"
-    destination_address_prefix = azurerm_network_interface.jumpbox.private_ip_addresses
+    destination_address_prefix = azurerm_network_interface.jumpbox.private_ip_address
   }
 
   tags = var.resource_tags
