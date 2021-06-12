@@ -27,5 +27,17 @@ resource "azurerm_network_security_group" "blueteam" {
     destination_address_prefix = azurerm_network_interface.jumpbox.private_ip_address
   }
 
+  security_rule {
+    access = "Allow"
+    direction = "Inbound"
+    name = "Allow-SSH-from-Jumpbox"
+    priority = 501
+    protocol = "TCP"
+    source_port_range = "*"
+    source_address_prefix = azurerm_network_interface.jumpbox.private_ip_address
+    destination_port_range = "22"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
   tags = var.resource_tags
 }
