@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "blueteam" {
   security_rule {
     access = "Allow"
     direction = "Inbound"
-    name = "Allow-SSH-for-Jumpbox"
+    name = "Allow-HTTP-for-ELK"
     priority = 501
     protocol = "TCP"
     source_port_range = "*"
