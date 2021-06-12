@@ -15,7 +15,7 @@ resource "azurerm_public_ip" "elk" {
 }
 
 resource "azurerm_network_interface" "web" {
-  count = 2
+  count = 1
 
   location = azurerm_network_security_group.blueteam.location
   name = "elk-web-${count.index}"
