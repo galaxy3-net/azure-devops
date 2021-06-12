@@ -39,7 +39,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   network_interface_ids = [azurerm_network_interface.web[count.index].id]
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
   # availability_set_id = azurerm_availability_set.blueteam.id
-  size = "Standard_D2sv3"
+  size = "Standard_D2s_v3"
   os_disk {
     caching = "ReadWrite"
     storage_account_type = "Standard_LRS"
