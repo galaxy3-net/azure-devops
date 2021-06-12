@@ -13,7 +13,7 @@ data "terraform_remote_state" "redteam" {
   backend = "local"
 
   config = {
-    path = "/Users/korbenkirscht/Downloads/terraform/redteam/dev/terraform.tfstate"
+    path = "/Downloads/terraform/redteam/prod/terraform.tfstate"
   }
 }
 
