@@ -18,9 +18,9 @@ resource "azurerm_network_interface" "web" {
   count = 1
 
   location = azurerm_network_security_group.blueteam.location
-  name = "elk-web-${count.index}"
+  name = "elk-web-${count.index + 1}"
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
-  internal_dns_name_label = "elk-web-${count.index}"
+  internal_dns_name_label = "elk-web-${count.index + 1}"
   ip_configuration {
     name = "elk-web-nic1"
     subnet_id = azurerm_subnet.default.id
@@ -35,7 +35,7 @@ resource "azurerm_linux_virtual_machine" "web" {
 
   admin_username = "sysadmin"
   location = azurerm_network_security_group.blueteam.location
-  name = "Elk-Web-${count.index}"
+  name = "Elk-Web-${count.index + 1}"
   network_interface_ids = [azurerm_network_interface.web[count.index].id]
   resource_group_name = data.terraform_remote_state.redteam.outputs.rg-name
   # availability_set_id = azurerm_availability_set.blueteam.id
