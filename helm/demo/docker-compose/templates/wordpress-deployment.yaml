@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: wordpress
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/app-net: "true"
+        io.kompose.service: wordpress
+    spec:
+      containers:
+      - env:
+        - name: WORDPRESS_DB_HOST
+          value: db
+        - name: WORDPRESS_DB_NAME
+          value: exampledb
+        - name: WORDPRESS_DB_PASSWORD
+          value: examplepass
+        - name: WORDPRESS_DB_USER
+          value: exampleuser
+        image: wordpress:4.6.1-php5.6-apache
+        imagePullPolicy: ""
+        name: wp
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: wordpress
+        - mountPath: /var/www/html/volume
+          name: wordpress-claim1
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: wordpress
+        persistentVolumeClaim:
+          claimName: wordpress
+      - name: wordpress-claim1
+        persistentVolumeClaim:
+          claimName: wordpress-claim1
+status: {}
