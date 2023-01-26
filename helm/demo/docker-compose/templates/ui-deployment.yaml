@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
-    kompose.version: 1.21.0 (992df58d8)
+    kompose.cmd: kompose convert -c
+    kompose.version: 1.22.0 (HEAD)
   creationTimestamp: null
   labels:
     io.kompose.service: ui
@@ -18,27 +18,25 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
-        kompose.version: 1.21.0 (992df58d8)
+        kompose.cmd: kompose convert -c
+        kompose.version: 1.22.0 (HEAD)
       creationTimestamp: null
       labels:
         io.kompose.network/app-net: "true"
         io.kompose.service: ui
     spec:
       containers:
-      - image: httpd:2.4
-        imagePullPolicy: ""
-        name: ui
-        ports:
-        - containerPort: 80
-        resources: {}
-        volumeMounts:
-        - mountPath: /home
-          name: ui-claim0
+        - image: httpd:2.4
+          name: ui
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /home
+              name: ui-claim0
       restartPolicy: Always
-      serviceAccountName: ""
       volumes:
-      - name: ui-claim0
-        persistentVolumeClaim:
-          claimName: ui-claim0
+        - name: ui-claim0
+          persistentVolumeClaim:
+            claimName: ui-claim0
 status: {}

@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
-    kompose.version: 1.21.0 (992df58d8)
+    kompose.cmd: kompose convert -c
+    kompose.version: 1.22.0 (HEAD)
   creationTimestamp: null
   labels:
     io.kompose.service: db
@@ -18,34 +18,32 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
-        kompose.version: 1.21.0 (992df58d8)
+        kompose.cmd: kompose convert -c
+        kompose.version: 1.22.0 (HEAD)
       creationTimestamp: null
       labels:
         io.kompose.network/app-net: "true"
         io.kompose.service: db
     spec:
       containers:
-      - env:
-        - name: MYSQL_DATABASE
-          value: exampledb
-        - name: MYSQL_PASSWORD
-          value: examplepass
-        - name: MYSQL_RANDOM_ROOT_PASSWORD
-          value: "1"
-        - name: MYSQL_USER
-          value: exampleuser
-        image: mysql:5.7
-        imagePullPolicy: ""
-        name: db
-        resources: {}
-        volumeMounts:
-        - mountPath: /var/lib/mysql
+        - env:
+            - name: MYSQL_DATABASE
+              value: exampledb
+            - name: MYSQL_PASSWORD
+              value: examplepass
+            - name: MYSQL_RANDOM_ROOT_PASSWORD
+              value: "1"
+            - name: MYSQL_USER
+              value: exampleuser
+          image: mysql:5.7
           name: db
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: db
       restartPolicy: Always
-      serviceAccountName: ""
       volumes:
-      - name: db
-        persistentVolumeClaim:
-          claimName: db
+        - name: db
+          persistentVolumeClaim:
+            claimName: db
 status: {}
